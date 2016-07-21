@@ -16,7 +16,6 @@ class App extends Component {
       <div>
         <div id="search-bar">
           <Welcome />
-          <h1>MyTube - @CS52 Productions</h1>
           <CreateBar onSearchChange={text => this.search(text)} />
         </div>
 
