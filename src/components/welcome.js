@@ -1,14 +1,12 @@
 import React from 'react';
 
-
 // function based "dumb" component with no state
-const Welcome = () => {
+function Welcome() {
   return (
     <div>
-      react+webpack+babel+eslint starter
+      <h1>Welcome to Sticky Note Central!</h1>
     </div>
   );
-};
-
+}
 
 export default Welcome;

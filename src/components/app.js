@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import CreateBar from './create_bar.js';
 import Welcome from './welcome';
 
 // example class based component (smart component)
@@ -14,7 +14,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Welcome />
+        <div id="search-bar">
+          <Welcome />
+          <h1>MyTube - @CS52 Productions</h1>
+          <CreateBar onSearchChange={text => this.search(text)} />
+        </div>
+
       </div>
     );
   }
