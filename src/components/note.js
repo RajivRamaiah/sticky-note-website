@@ -16,7 +16,7 @@ class Note extends Component {
     };
 
     this.onEditClick = this.onEditClick.bind(this);
-    this.showEdit = this.showEdit.bind(this);
+    this.showEditIcon = this.showEditIcon.bind(this);
     this.onDrag = this.onDrag.bind(this);
     this.showEditBox = this.showEditBox.bind(this);
     this.updateText = this.updateText.bind(this);
@@ -36,7 +36,7 @@ class Note extends Component {
   }
 
   //  change icon if in editing or not.
-  showEdit() {
+  showEditIcon() {
     if (this.state.editing) {
       return <i className="fa fa-check" onClick={this.onEditClick} aria-hidden="true"></i>;
     } else {
@@ -50,8 +50,8 @@ class Note extends Component {
         <div className="edit-box">
           <Textarea
             style={{ boxSizing: 'border-box' }}
-            minRows={8}
-            maxRows={8}
+            minRows={12}
+            maxRows={12}
             defaultValue={this.state.text}
             onChange={this.updateText}
           />
@@ -81,7 +81,7 @@ class Note extends Component {
 
           <div id="arrow_edit">
             <i className="fa fa-arrows"></i>
-            {this.showEdit()}
+            {this.showEditIcon()}
           </div>
           {this.showEditBox()}
         </div>
