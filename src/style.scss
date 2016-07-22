@@ -25,11 +25,16 @@ body {
   font-size: 1.5em;
 }
 
+// Source for scroll box: http://www.quackit.com/html/codes/html_scroll_box.cfm
 .note {
-  width: 200px;
-  height: 200px;
+  min-width: 200px;
+  min-height: 200px;
+  max-width: 250px;
+  max-height: 250px;
   background-color: #FFFFFF;
-
+  position: absolute;
   box-sizing: border-box;
-
+  overflow: auto;
+  border:2px solid #ccc;
+  font:16px/26px Georgia, Garamond, Serif;
 }

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
-// import Textarea from 'react-textarea-autosize';
+import Textarea from 'react-textarea-autosize';
 import marked from 'marked';
 
 class Note extends Component {
@@ -16,20 +16,51 @@ class Note extends Component {
     };
 
     this.onEditClick = this.onEditClick.bind(this);
-    this.renderEdit = this.renderEdit.bind(this);
+    this.showEdit = this.showEdit.bind(this);
+    this.onDrag = this.onDrag.bind(this);
+    this.showEditBox = this.showEditBox.bind(this);
+    this.updateText = this.updateText.bind(this);
   }
 
   onEditClick() {
     this.setState({ editing: !this.state.editing });
   }
 
-  // change note view for edit
+  onDrag(event, ui) {
+    this.props.updateNote(ui.x, ui.y);
+  }
 
-  renderEdit() {
+  updateText(event) {
+    this.setState({ text: event.target.value });
+    this.props.updateNote(this.state.text);
+  }
+
+  //  change icon if in editing or not.
+  showEdit() {
     if (this.state.editing) {
-      return <i onClick={this.onEditClick} className="fa fa-check" aria-hidden="true"></i>;
+      return <i className="fa fa-check" onClick={this.onEditClick} aria-hidden="true"></i>;
     } else {
-      return <i onClick={this.onEditClick} className="fa fa-pencil" aria-hidden="true"></i>;
+      return <i className="fa fa-pencil" onClick={this.onEditClick} aria-hidden="true"></i>;
+    }
+  }
+
+  showEditBox() {
+    if (this.state.editing) {
+      return (
+        <div className="edit-box">
+          <Textarea
+            style={{ boxSizing: 'border-box' }}
+            minRows={8}
+            maxRows={8}
+            defaultValue={this.state.text}
+            onChange={this.updateText}
+          />
+        </div>
+       );
+    } else {
+      return (
+        <div className="content" dangerouslySetInnerHTML={{ __html: marked(this.state.text) }} />
+      );
     }
   }
 
@@ -37,25 +68,22 @@ class Note extends Component {
     return (
       <Draggable
         handle=".fa-arrows"
-        grid={[25, 25]}
+        grid={[1, 1]}
         defaultPosition={{ x: this.props.note.x, y: this.props.note.y }}
-        onStart={this.onStartDrag}
+        position={{ x: this.props.note.x, y: this.props.note.y }}
         onDrag={this.onDrag}
-        onStop={this.onStopDrag}
       >
         <div className="note">
-          <div>
-            <div id="title/delete">
-              <span className="title">{this.props.note.title}</span>
-              <i className="fa fa-trash-o" onClick={this.props.deleteNote} ></i>
-            </div>
-
-            <div id="arrow/edit">
-              <i className="fa fa-arrows"></i>
-              {this.renderEdit}
-            </div>
-            <div className="content" dangerouslySetInnerHTML={{ __html: marked(this.state.text) }} />
+          <div id="title_delete">
+            <span className="title">{this.props.note.title}</span>
+            <i className="fa fa-trash-o" onClick={this.props.deleteNote} ></i>
           </div>
+
+          <div id="arrow_edit">
+            <i className="fa fa-arrows"></i>
+            {this.showEdit()}
+          </div>
+          {this.showEditBox()}
         </div>
 
       </Draggable>

@@ -13,14 +13,21 @@ class App extends Component {
     this.state = {
       notes: Immutable.Map({
         1: {
-          title: 'testing1',
-          text: 'I is a note',
+          title: 'Hello',
+          text: 'I\'m a note, you can add more of me by typing a title and pressing the create button above!',
           x: 0,
           y: 0,
           zIndex: 26,
         },
+        2: {
+          title: 'Tips',
+          text: 'Move me around by dragging me from the arrows, or edit me by pressing the pencil button',
+          x: 300,
+          y: 150,
+          zIndex: 26,
+        },
       }),
-      nextID: 2,
+      nextID: 3,
     };
   }
 
@@ -45,7 +52,7 @@ class App extends Component {
 
   updateNote(text, id) {
     this.setState({
-      notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, text); }),
+      notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, { text }); }),
     });
   }
 
@@ -58,12 +65,10 @@ class App extends Component {
   displayNotes() {
     return this.state.notes.entrySeq().map(([id, note]) => {
       return (
-        <Note note={note}
+        <Note note={note} key={id}
           deleteNote={() => this.deleteNote(id)}
           updatePosition={(x, y) => this.updatePosition(x, y, id)}
           updateNote={(text) => this.updateNote(text, id)}
-          // updateSize={(width, height) => this.updateSize(width, height, id)}
-          // updateLayers={() => this.updateLayers(id)}
         />
       );
     });
