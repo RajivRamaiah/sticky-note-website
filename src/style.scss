@@ -4,3 +4,23 @@ body {
   background: darken(white, 10%);
   margin: 50px;
 }
+
+#create-bar {
+  margin-bottom: 20px;
+
+  input {
+    font-size: 1.5em;
+    border-radius: .25em;
+  }
+}
+
+#create-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.5em;
+}

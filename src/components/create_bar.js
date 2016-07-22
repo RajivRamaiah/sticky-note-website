@@ -8,7 +8,9 @@ class CreateBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { name: '' };
+    this.state = {
+      name: '',
+    };
 
     this.onInputChange = this.onInputChange.bind(this);
   }
@@ -22,6 +24,7 @@ class CreateBar extends Component {
     return (
       <div>
         <input placeholder="Add a title for your note!" onChange={this.onInputChange} value={this.state.name} />
+        <button id="create-button" type="submit">Create Note!</button>
       </div>
     );
   }

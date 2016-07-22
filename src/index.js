@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CreateBar from './components/create_bar.js';
-
 import App from './components/app';
 
 import './style.scss';

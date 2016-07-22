@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CreateBar from './create_bar.js';
 import Welcome from './welcome';
+import Immutable from 'immutable';
 
 // example class based component (smart component)
 class App extends Component {
@@ -8,17 +9,23 @@ class App extends Component {
     super(props);
 
     // init component state here
-    this.state = {};
+    this.state = {
+      notes: Immutable.Map(),
+      //...
+    };
+  }
+
+  addNote(text) {
+
   }
 
   render() {
     return (
       <div>
-        <div id="search-bar">
+        <div id="create-bar">
           <Welcome />
           <CreateBar onSearchChange={text => this.search(text)} />
         </div>
-
       </div>
     );
   }
