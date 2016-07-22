@@ -49,6 +49,12 @@ class App extends Component {
     });
   }
 
+  updatePosition(x, y, id) {
+    this.setState({
+      notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, { x, y }); }),
+    });
+  }
+
   displayNotes() {
     return this.state.notes.entrySeq().map(([id, note]) => {
       return (

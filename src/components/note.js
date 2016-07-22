@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
-import Textarea from 'react-textarea-autosize';
+// import Textarea from 'react-textarea-autosize';
 import marked from 'marked';
 
 class Note extends Component {
@@ -16,7 +16,6 @@ class Note extends Component {
     };
 
     this.onEditClick = this.onEditClick.bind(this);
-    this.adaptNote = this.adaptNote.bind(this);
     this.renderEdit = this.renderEdit.bind(this);
   }
 
@@ -24,20 +23,8 @@ class Note extends Component {
     this.setState({ editing: !this.state.editing });
   }
 
-  adaptNote() {
-    if (this.state.editing) {
-      return (
-        <Textarea
-          style={{ boxSizing: 'border-box' }}
-          minRows={3}
-          maxRows={6}
-          defaultValue="Just a single line..."
-        />
-      );
-    } else {
-      return <div className="noteBody" dangerouslySetInnerHTML={{ __html: marked(this.props.note.text || '') }} />;
-    }
-  }
+  // change note view for edit
+
   renderEdit() {
     if (this.state.editing) {
       return <i onClick={this.onEditClick} className="fa fa-check" aria-hidden="true"></i>;
@@ -67,7 +54,7 @@ class Note extends Component {
               <i className="fa fa-arrows"></i>
               {this.renderEdit}
             </div>
-            {this.adaptNote}
+            <div className="content" dangerouslySetInnerHTML={{ __html: marked(this.state.text) }} />
           </div>
         </div>
 
