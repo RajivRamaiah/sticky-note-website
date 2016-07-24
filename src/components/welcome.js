@@ -3,7 +3,7 @@ import React from 'react';
 // function based "dumb" component with no state
 function Welcome() {
   return (
-    <div>
+    <div id="Welcome">
       <h1>Welcome to Sticky Note Central!</h1>
     </div>
   );

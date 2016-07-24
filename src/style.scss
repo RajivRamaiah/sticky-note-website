@@ -1,7 +1,6 @@
 body {
+  background-image: url('http://wallpapercave.com/wp/CyT83yY.jpg');
   font-family: "Roboto", sans-serif;
-  color: rgb(10%, 10%, 10%);
-  background: darken(white, 50%);
   margin: 50px;
 }
 
@@ -14,15 +13,17 @@ body {
   }
 }
 
-#create-button {
-  background-color: #4CAF50; /* Green */
-  border: none;
+#Welcome {
   color: white;
-  padding: 15px 32px;
+}
+
+#create-button {
+  background-color: #99FF99;
+  margin-left: 5px;
+  padding: 10px 30px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
-  font-size: 1.5em;
+  font-size: 1.0em;
 }
 
 // Source for scroll box/font: http://www.quackit.com/html/codes/html_scroll_box.cfm
@@ -38,7 +39,7 @@ body {
   position: absolute;
   box-sizing: border-box;
   overflow: auto;
-  border:2px solid #ccc;
+  border:1px solid #000000;
   font:16px/26px Georgia, Garamond, Serif;
   word-wrap: break-word;
   width: 100p;
