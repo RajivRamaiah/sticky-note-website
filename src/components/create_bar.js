@@ -1,5 +1,5 @@
 //  Rajiv Ramaiah, CS52, Summer '16
-//  Sources: http://cs52.me/assignments/sa4/
+//  Looked through React-Youtube project from SA4 to refresh
 
 import React, { Component } from 'react';
 
@@ -20,11 +20,13 @@ class CreateBar extends Component {
     this.setState({ title: event.target.value });
   }
 
-  //  source: https://facebook.github.io/react/docs/events.html
+  //  source for event methods/needs: https://facebook.github.io/react/docs/events.html
+  //  add note to board
   createStickyNote(event) {
     event.preventDefault();
     event.stopPropagation();
     this.props.createNote(this.state.title);
+    //  reset title to clear create bar
     this.setState({
       title: '',
     });

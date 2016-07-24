@@ -25,10 +25,11 @@ body {
   font-size: 1.5em;
 }
 
-// Source for scroll box: http://www.quackit.com/html/codes/html_scroll_box.cfm
+// Source for scroll box/font: http://www.quackit.com/html/codes/html_scroll_box.cfm
 .note {
-  min-width: 200px;
-  min-height: 200px;
+  resize: both;
+  display: flex-inline;
+  justify-content: space-between;
   max-width: 250px;
   max-height: 250px;
   background-color: #FFFFFF;
@@ -37,4 +38,14 @@ body {
   overflow: auto;
   border:2px solid #ccc;
   font:16px/26px Georgia, Garamond, Serif;
+
+  #header {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+#title {
+  color: black;
+  font-size: 25px;
 }

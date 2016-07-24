@@ -20,19 +20,25 @@ class Note extends Component {
     this.onDrag = this.onDrag.bind(this);
     this.showEditBox = this.showEditBox.bind(this);
     this.updateText = this.updateText.bind(this);
+    this.updateZAxis = this.updateZAxis.bind(this);
   }
 
+  //  called on pencil icon clicked
   onEditClick() {
     this.setState({ editing: !this.state.editing });
   }
 
   onDrag(event, ui) {
-    this.props.updateNote(ui.x, ui.y);
+    this.props.updatePosition(ui.x, ui.y);
+  }
+
+  updateZAxis() {
+    this.props.updateZAxis();
   }
 
   updateText(event) {
     this.setState({ text: event.target.value });
-    this.props.updateNote(this.state.text);
+    this.props.updateText(this.state.text);
   }
 
   //  change icon if in editing or not.
@@ -50,8 +56,8 @@ class Note extends Component {
         <div className="edit-box">
           <Textarea
             style={{ boxSizing: 'border-box' }}
-            minRows={12}
-            maxRows={12}
+            minRows={10}
+            maxRows={10}
             defaultValue={this.state.text}
             onChange={this.updateText}
           />
@@ -72,16 +78,19 @@ class Note extends Component {
         defaultPosition={{ x: this.props.note.x, y: this.props.note.y }}
         position={{ x: this.props.note.x, y: this.props.note.y }}
         onDrag={this.onDrag}
+        onClick={this.updateZAxis}
       >
-        <div className="note">
-          <div id="title_delete">
-            <span className="title">{this.props.note.title}</span>
-            <i className="fa fa-trash-o" onClick={this.props.deleteNote} ></i>
-          </div>
+        <div className="note" style={{ zIndex: this.props.note.zIndex }}>
+          <div id="header">
+            <div id="title">
+              <span id="title">{this.props.note.title}</span>
+            </div>
 
-          <div id="arrow_edit">
-            <i className="fa fa-arrows"></i>
-            {this.showEditIcon()}
+            <div id="icons">
+              {this.showEditIcon()}
+              <i className="fa fa-trash-o" onClick={this.props.deleteNote} ></i>
+              <i className="fa fa-arrows"></i>
+            </div>
           </div>
           {this.showEditBox()}
         </div>

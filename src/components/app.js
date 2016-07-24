@@ -35,6 +35,7 @@ class App extends Component {
         },
       }),
       nextID: 4,
+      zAxis: 4,
     };
   }
 
@@ -47,7 +48,8 @@ class App extends Component {
         y: 0,
         zIndex: this.state.nextID,
       }),
-      id: this.state.nextID++,
+      nextID: this.state.nextID + 1,
+      zAxis: this.state.zAxis + 1,
     });
   }
 
@@ -57,15 +59,9 @@ class App extends Component {
     });
   }
 
-  // updateNote(text, id) {
-  //   this.setState({
-  //     notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, { text }); }),
-  //   });
-  // }
-
-  updateNote(fields, id) {
+  updateText(text, id) {
     this.setState({
-      notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, fields); }),
+      notes: this.state.notes.update(id, (n) => { return Object.assign({}, n, { text }); }),
     });
   }
 
@@ -75,13 +71,25 @@ class App extends Component {
     });
   }
 
+  updateZAxis(currentID) {
+    if (this.state.zIndex !== this.state.notes.get(currentID).zIndex) {
+      this.setState({
+        notes: this.state.notes.update(currentID, (n) => {
+          return Object.assign({}, n, { zIndex: this.state.zIndex + 1 });
+        }),
+        zIndex: this.state.zIndex + 1,
+      });
+    }
+  }
+
   displayNotes() {
     return this.state.notes.entrySeq().map(([id, note]) => {
       return (
         <Note note={note} key={id}
           deleteNote={() => this.deleteNote(id)}
-          updateNote={(fields) => this.updateNote(fields, id)}
+          updateText={(text) => this.updateText(text, id)}
           updatePosition={(x, y) => this.updatePosition(x, y, id)}
+          updateZAxis={() => this.updateZAxis(id)}
         />
       );
     });
@@ -93,8 +101,8 @@ class App extends Component {
         <div id="create-bar">
           <Welcome />
           <CreateBar createNote={title => this.addNote(title)} />
-          {this.displayNotes()}
         </div>
+        {this.displayNotes()}
       </div>
     );
   }
