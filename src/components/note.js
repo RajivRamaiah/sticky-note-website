@@ -1,5 +1,3 @@
-// https://github.com/mzabriskie/react-draggable
-
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import Textarea from 'react-textarea-autosize';
@@ -20,7 +18,6 @@ class Note extends Component {
     this.onDrag = this.onDrag.bind(this);
     this.showEditBox = this.showEditBox.bind(this);
     this.updateText = this.updateText.bind(this);
-    this.updateZAxis = this.updateZAxis.bind(this);
   }
 
   //  called on pencil icon clicked
@@ -30,10 +27,6 @@ class Note extends Component {
 
   onDrag(event, ui) {
     this.props.updatePosition(ui.x, ui.y);
-  }
-
-  updateZAxis() {
-    this.props.updateZAxis();
   }
 
   updateText(event) {
@@ -78,9 +71,8 @@ class Note extends Component {
         defaultPosition={{ x: this.props.note.x, y: this.props.note.y }}
         position={{ x: this.props.note.x, y: this.props.note.y }}
         onDrag={this.onDrag}
-        onClick={this.updateZAxis}
       >
-        <div className="note" style={{ zIndex: this.props.note.zIndex }}>
+        <div className="note">
           <div id="header">
             <div id="title">
               <span id="title">{this.props.note.title}</span>

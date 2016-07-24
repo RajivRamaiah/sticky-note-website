@@ -71,17 +71,6 @@ class App extends Component {
     });
   }
 
-  updateZAxis(currentID) {
-    if (this.state.zIndex !== this.state.notes.get(currentID).zIndex) {
-      this.setState({
-        notes: this.state.notes.update(currentID, (n) => {
-          return Object.assign({}, n, { zIndex: this.state.zIndex + 1 });
-        }),
-        zIndex: this.state.zIndex + 1,
-      });
-    }
-  }
-
   displayNotes() {
     return this.state.notes.entrySeq().map(([id, note]) => {
       return (
@@ -89,7 +78,6 @@ class App extends Component {
           deleteNote={() => this.deleteNote(id)}
           updateText={(text) => this.updateText(text, id)}
           updatePosition={(x, y) => this.updatePosition(x, y, id)}
-          updateZAxis={() => this.updateZAxis(id)}
         />
       );
     });
