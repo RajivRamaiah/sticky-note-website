@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 const database = firebase.database();
 
 export function deleteNote(id) {
-  database.ref('id').remove();
+  database.ref('notes').child(id).remove();
 }
 
 export function updateNote(id, data) {
