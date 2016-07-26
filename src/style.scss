@@ -13,11 +13,16 @@ body {
   }
 }
 
+.content {
+  padding: 5px;
+}
+
 #Welcome {
   color: white;
 }
 
 #create-button {
+  border-radius: 10px;
   background-color: #99FF99;
   margin-left: 5px;
   padding: 10px 30px;
@@ -28,6 +33,7 @@ body {
 
 // Source for scroll box/font: http://www.quackit.com/html/codes/html_scroll_box.cfm
 .note {
+  border-radius: 5px;
   resize: both;
   display: flex-inline;
   justify-content: space-between;
@@ -45,12 +51,20 @@ body {
   width: 100p;
 
   #header {
-    display: flex;
-    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    float: left;
+    width: 100%;
   }
 }
 
+i {
+  margin: 5px 10px 0 -3px;
+  float: right;
+}
+
 #title {
+  padding: 5px;
   color: black;
   font-size: 25px;
 }

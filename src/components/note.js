@@ -31,6 +31,7 @@ class Note extends Component {
 
   updateText(event) {
     this.setState({ text: event.target.value });
+    console.log(this.state.text);
     this.props.updateText(this.state.text);
   }
 
@@ -74,15 +75,10 @@ class Note extends Component {
       >
         <div className="note">
           <div id="header">
-            <div id="title">
-              <span id="title">{this.props.note.title}</span>
-            </div>
-
-            <div id="icons">
-              {this.showEditIcon()}
-              <i className="fa fa-trash-o" onClick={this.props.deleteNote} ></i>
-              <i className="fa fa-arrows"></i>
-            </div>
+            <span id="title">{this.props.note.title}</span>
+            <i className="fa fa-arrows"></i>
+            {this.showEditIcon()}
+            <i className="fa fa-trash-o" onClick={this.props.deleteNote} ></i>
           </div>
           {this.showEditBox()}
         </div>
