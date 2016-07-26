@@ -31,8 +31,7 @@ class Note extends Component {
 
   updateText(event) {
     this.setState({ text: event.target.value });
-    console.log(this.state.text);
-    this.props.updateText(this.state.text);
+    this.props.updateText(event.target.value);
   }
 
   //  change icon if in editing or not.
